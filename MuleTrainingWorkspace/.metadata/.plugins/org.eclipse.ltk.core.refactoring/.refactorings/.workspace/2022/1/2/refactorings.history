@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;xcdv&apos;" deleteContents="false" description="Delete resource &apos;xcdv&apos;" element1="/xcdv" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1641376232822"/>
+</session>

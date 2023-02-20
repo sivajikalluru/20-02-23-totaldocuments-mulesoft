@@ -1,0 +1,26 @@
+{
+  "configs": [
+    "assessment2-papi-sivanjaneyuluk.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:assessment2-papi-sivanjaneyuluk:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.4.0",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [
+        "project2"
+      ],
+      "exportedResources": [
+        "assessment2-papi-sivanjaneyuluk.xml",
+        "log4j2.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

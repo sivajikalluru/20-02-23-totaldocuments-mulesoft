@@ -1,0 +1,50 @@
+[
+  {
+    "GLCode_SGA__c": "70095",
+    "Job_Description__c": "Director I",
+    "Job_Code__c": "DIRI",
+    "Id": null,
+    "GLCode_Others__c": "60297",
+    "type": "Job_codes__c"
+  },
+  {
+    "GLCode_SGA__c": "70095",
+    "Job_Description__c": "Associate I/Field Associate",
+    "Job_Code__c": "ASSOCI",
+    "Id": null,
+    "GLCode_Others__c": "60297",
+    "type": "Job_codes__c"
+  },
+  {
+    "GLCode_SGA__c": "70095",
+    "Job_Description__c": "Manager I",
+    "Job_Code__c": "MGRI",
+    "Id": null,
+    "GLCode_Others__c": "60297",
+    "type": "Job_codes__c"
+  },
+  {
+    "GLCode_SGA__c": "70095",
+    "Job_Description__c": "Executive C",
+    "Job_Code__c": "EXECC",
+    "Id": null,
+    "GLCode_Others__c": "60297",
+    "type": "Job_codes__c"
+  },
+  {
+    "GLCode_SGA__c": "XXXXXXX",
+    "Job_Description__c": "Key Master",
+    "Job_Code__c": "KEYMTR",
+    "Id": null,
+    "GLCode_Others__c": "60281",
+    "type": "Job_codes__c"
+  },
+  {
+    "GLCode_SGA__c": "70095",
+    "Job_Description__c": "Manager II",
+    "Job_Code__c": "MGRII",
+    "Id": null,
+    "GLCode_Others__c": "60297",
+    "type": "Job_codes__c"
+  }
+]

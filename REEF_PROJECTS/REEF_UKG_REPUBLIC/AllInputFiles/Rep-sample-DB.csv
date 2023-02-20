@@ -1,0 +1,66 @@
+﻿Type,Type_Desc,Earnings_Code,Earnings_Code_Desc,Limestone_GL_Account,Limestone_GL_Desc,RPS_GL_Account
+EE,Earnings expense,AUTP,Auto Allow Per Pay Period,502040,Benefits - Allowance - Variable,61199
+EE,Earnings expense,AUT,Auto Allowance Monthly,502040,Benefits - Allowance - Variable,61199
+EE,Earnings expense,CCAR,Car Allowance Per Pay Period,502040,Benefits - Allowance - Variable,61199
+EE,Earnings expense,CEL,Cell Ph Allowance Monthly,502040,Benefits - Allowance - Variable,61463
+EE,Earnings expense,CELP,Cell Ph Allowance Per Pay Period,502040,Benefits - Allowance - Variable,61463
+EE,Earnings expense,CLA,Cost of Living allowance,502040,Benefits - Allowance - Variable,22161
+EE,Earnings expense,GSA,Gas Allowance,502040,Benefits - Allowance - Variable,61199
+EE,Earnings expense,RLO,Relocation Payout,502040,Benefits - Allowance - Variable,22161
+EE,Earnings expense,CSHO,Shoe Allowance,502040,Benefits - Allowance - Variable,22161
+EE,Earnings expense,CUNI,Uniform Allowance,502040,Benefits - Allowance - Variable,22161
+DE,Deduction EE payable,PHN,Phone Allowance,502040,Benefits - Allowance - Variable,61463
+DR,Deduction ER expense,CMEAL,Meal Allowance,502040,Benefits - Allowance - Variable,61230
+EE,Earnings expense,CAUM,Car Allowance Monthly,502040,Benefits - Allowance - Variable,61199
+EE,Earnings expense,CCPM,Cell Phone Allowance Monthly,502040,Benefits - Allowance - Variable,61463
+EE,Earnings expense,CCPP,Cell Phone Allowance Pay Period,502040,Benefits - Allowance - Variable,61463
+EE,Earnings expense,AUTP,Auto Allow Per Pay Period,582040,Benefits - Allowance,61199
+EE,Earnings expense,AUT,Auto Allowance Monthly,582040,Benefits - Allowance,61199
+EE,Earnings expense,CCAR,Car Allowance Per Pay Period,582040,Benefits - Allowance,61199
+EE,Earnings expense,CEL,Cell Ph Allowance Monthly,582040,Benefits - Allowance,61463
+EE,Earnings expense,CELP,Cell Ph Allowance Per Pay Period,582040,Benefits - Allowance,61463
+EE,Earnings expense,CLA,Cost of Living allowance,582040,Benefits - Allowance,22161
+EE,Earnings expense,GSA,Gas Allowance,582040,Benefits - Allowance,61199
+EE,Earnings expense,RLO,Relocation Payout,582040,Benefits - Allowance,22161
+EE,Earnings expense,CSHO,Shoe Allowance,582040,Benefits - Allowance,22161
+EE,Earnings expense,CUNI,Uniform Allowance,582040,Benefits - Allowance,22161
+DE,Deduction EE payable,PHN,Phone Allowance,582040,Benefits - Allowance,61463
+DR,Deduction ER expense,CMEAL,Meal Allowance,582040,Benefits - Allowance,61230
+EE,Earnings expense,CAUM,Car Allowance Monthly,582040,Benefits - Allowance,61199
+EE,Earnings expense,CCPM,Cell Phone Allowance Monthly,582040,Benefits - Allowance,61463
+EE,Earnings expense,CCPP,Cell Phone Allowance Pay Period,582040,Benefits - Allowance,61463
+,,,,502005,Wages - Base pay - Variable,61110
+,,,,531005,Wages - Base pay - Fixed,61110
+,,,,551005,Wages - Base pay,61110
+,,,,582005,Wages - Base pay,61110
+,,,,601005,Wages - Base pay,61110
+,,,,502015,Wages - Bonus - Variable,61110
+,,,,531010,Wages - Bonus - Fixed,61110
+,,,,502020,Wages - Other - Variable,61110
+,,,,531015,Wages - Other - Fixed,61110
+,,,,202120,401(k) Payable,21450
+,,,,202140,401(k) Union Payable,21450
+,,,,202115,Accrued Health Insurance Premium,22161
+,,,,202130,Wages Payable,11221
+,,,,202080,Accrued Union Dues,23211
+,,,,202060,FSA and HSA Payable,22161
+,,,,502035,Benefits - Pension / 401 - Variable,61138
+,,,,531030,Benefits - Pension / 401 - Fixed,61138
+,,,,551035,Benefits - Pension / 401,61138
+,,,,582035,Benefits - Pension / 401,61138
+,,,,601035,Benefits - Pension / 401,61138
+,,,,502030,Benefits - Employee Benefits - Variable,61230
+,,,,531025,Benefits - Employee Benefits - Fixed,61230
+,,,,551030,Benefits - Employee Benefits,61230
+,,,,582030,Benefits - Employee Benefits,61230
+,,,,601030,Benefits - Employee Benefits,61230
+,,,,502045,Benefits - Other - Variable,61525
+,,,,531040,Benefits - Other - Fixed,61525
+,,,,551045,Benefits - Other,61525
+,,,,582045,Benefits - Other,61525
+,,,,601045,Benefits - Other,61525
+,,,,502025,Payroll Taxes - Variable,61130
+,,,,531020,Payroll Taxes - Fixed,61130
+,,,,551025,Payroll Taxes,61130
+,,,,582025,Payroll Taxes,61130
+,,,,601025,Payroll Taxes,61130

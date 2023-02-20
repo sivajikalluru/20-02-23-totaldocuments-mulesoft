@@ -1,0 +1,11 @@
+{
+  "main" : "learnapi.raml",
+  "name" : "LearnApi",
+  "classifier" : "raml",
+  "tags" : [ ],
+  "groupId" : "47f76cd8-a94b-4213-9035-7f93e4a28ac1",
+  "assetId" : "learnapi",
+  "version" : "1.0.0",
+  "apiVersion" : "",
+  "dependencies" : [ ]
+}

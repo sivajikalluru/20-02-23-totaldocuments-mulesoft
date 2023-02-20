@@ -1,0 +1,681 @@
+========================================================================================================================================================================================================================================
+1) Input:
+==========
+
+[{
+"date": " "
+},
+{
+"date": "2023-01-21"
+},{
+"date": " "
+},{
+"date": ""
+},{
+"date": ""
+}]
+
+
+flow:
+=====
+%dw 2.0
+output application/json
+import * from dw::core::Periods
+var a= trim(payload.date joinBy "")
+---
+payload map ((item, index) -> {
+
+"Date": a - years(index)
+})
+
+OUTPUT::
+========
+[
+  {
+    "Date": "2023-01-21"
+  },
+  {
+    "Date": "2022-01-21"
+  },
+  {
+    "Date": "2021-01-21"
+  },
+  {
+    "Date": "2020-01-21"
+  },
+  {
+    "Date": "2019-01-21"
+  }
+]
+========================================================================================================================================================================================================================================
+2)INPUT::
+========
+[
+{
+  "Type": "EE",
+  "Level": "Direct-FixedLvl1",
+  "EarningsCode": "CVAU",
+  "LimestoneGlAccount":"531005",
+  "email": "sivaji@gmail.com"
+},
+{
+  "Type": "EE",
+  "Level": "Secondry",
+  "EarningsCode": "XYZ",
+  "LimestoneGlAccount":"00001"
+},
+{
+  "Type": "BB",
+  "Level": "Third",
+  "EarningsCode": "BNM",
+  "LimestoneGlAccount":"00034"
+}
+]
+
+FLOW::
+======
+[
+{
+  "Type": "EE",
+  "Level": "Direct-FixedLvl1",
+  "EarningsCode": "CVAU",
+  "LimestoneGlAccount":"531005",
+  "email": "sivaji@gmail.com"
+},
+{
+  "Type": "EE",
+  "Level": "Secondry",
+  "EarningsCode": "XYZ",
+  "LimestoneGlAccount":"00001"
+},
+{
+  "Type": "BB",
+  "Level": "Third",
+  "EarningsCode": "BNM",
+  "LimestoneGlAccount":"00034"
+}
+]
+
+OUTPUT::
+==========
+[
+  {
+    "Type": "Anji",
+    "Level": "Direct-FixedLvl1",
+    "EarningsCode": "CVAU",
+    "LimestoneGlAccount": "531005",
+    "email": "sivaji@gmail.com"
+  },
+  {
+    "Type": "Anji",
+    "Level": "Secondry",
+    "EarningsCode": "XYZ",
+    "LimestoneGlAccount": "00001",
+    "email": "abc@gmail.com"
+  },
+  {
+    "Type": "BB",
+    "Level": "Third",
+    "EarningsCode": "BNM",
+    "LimestoneGlAccount": "00034",
+    "email": "abc@gmail.com"
+  }
+]
+========================================================================================================================================================================================================================================
+3)INPUT::
+========
+[
+{
+  "Type": "EE",
+  "Level": "Direct-FixedLvl1",
+  "EarningsCode": "CVAU",
+  "LimestoneGlAccount":"531005",
+  "email": "sivaji@gmail.com"
+},
+{
+  "Type": "EE",
+  "Level": "Secondry",
+  "EarningsCode": "XYZ",
+  "LimestoneGlAccount":"00001"
+},
+{
+  "Type": "BB",
+  "Level": "Third",
+  "EarningsCode": "BNM",
+  "LimestoneGlAccount":"00034"
+}
+]
+ FLOW::
+=======
+%dw 2.0
+output application/json
+---
+// payload map ((employee)->
+
+// employee  update {
+//         case  Type at .Type if( Type contains  "EE") ->   "India"
+//        case  Level at .Level if( Level contains "Secondry") -> Level ++ " "++ "first"
+// }
+// )
+payload map((user1)->
+
+user1  update {
+        case  email at .email! -> if(email == null) "anji"  else email
+}
+
+)
+
+OUTPUT::
+=======
+[
+  {
+    "Type": "EE",
+    "Level": "Direct-FixedLvl1",
+    "EarningsCode": "CVAU",
+    "LimestoneGlAccount": "531005",
+    "email": "sivaji@gmail.com"
+  },
+  {
+    "Type": "EE",
+    "Level": "Secondry",
+    "EarningsCode": "XYZ",
+    "LimestoneGlAccount": "00001",
+    "email": "anji"
+  },
+  {
+    "Type": "BB",
+    "Level": "Third",
+    "EarningsCode": "BNM",
+    "LimestoneGlAccount": "00034",
+    "email": "anji"
+  }
+]
+========================================================================================================================================================================================================================================
+4)INPUT::
+========
+{
+"number": 1,
+"more": {
+"number": 2
+},
+"number": 3,
+"number": 4,
+"string": 5
+}
+FLOW::
+======
+%dw 2.0
+output application/json
+---
+payload.*number reduce ((item, acc) -> item*acc)
+
+(or)
+payload.*number reduce $*$$
+
+OUTPUT:::
+========
+12
+====================================================================================================================
+====================================================================================================================
+5)INPUT:
+=======
+[
+  {
+    "Customer_Address": "Vijayawada",
+    "Customer_Name": "king",
+    "Customer_Id": 123,
+    "Account_No": 1234232
+  },
+  {
+    "Customer_Address": "Vijayawada",
+    "Customer_Name": "king",
+    "Customer_Id": 88,
+    "Account_No": 1234232
+  }
+]
+
+FLOW::
+=======
+%dw 2.0
+output application/json
+var a=[
+  {
+    "Customer_Id__c": 123,
+    "Account_No__c": 1234232,
+    "Customer_Address__c": "HYD",
+    "Id": null,
+    "type": "database_data__c",
+    "Customer_Name__c": "Eric"
+  },
+  {
+    "Customer_Id__c": "1746581.0",
+    "Account_No__c": 1234232,
+    "Customer_Address__c": "Delhi",
+    "Id": null,
+    "type": "database_data__c",
+    "Customer_Name__c": "Sharon kumar"
+  }
+]
+---
+flatten(payload  map ((item, index) -> a map ((item1, index1) -> if( item.Customer_Id == item1.Customer_Id__c) item  else "" ))) filter $ != ""
+
+OUTPUT::
+=========
+[
+  {
+    "Customer_Address": "Vijayawada",
+    "Customer_Name": "king",
+    "Customer_Id": 123,
+    "Account_No": 1234232
+  }
+]
+========================================================================================================================================================================================================================================
+6)INPUT::
+==========
+[
+  {
+    "Customer_Address": "Vijayawada",
+    "Customer_Name": "king",
+    "Customer_Id": 123,
+    "Account_No": 1234232
+  },
+  {
+    "Customer_Address": "Vijayawada",
+    "Customer_Name": "king",
+    "Customer_Id": 88,
+    "Account_No": 1234232
+  }
+]
+FLOW:::
+========
+%dw 2.0
+output application/json
+---
+[payload reduce ($$++$)]
+
+OUTPUT:::
+=========
+[
+  {
+    "Customer_Address": "Vijayawada",
+    "Customer_Name": "king",
+    "Customer_Id": 123,
+    "Account_No": 1234232,
+    "Customer_Address": "Vijayawada",
+    "Customer_Name": "king",
+    "Customer_Id": 88,
+    "Account_No": 1234232
+  }
+]
+====================================================================================================================
+====================================================================================================================
+7)INPUT:: ---->Array to Array Comapre
+=================
+
+[
+  {
+    "Pay Period Start": "2021-05-03T00:00:00",
+    "Pay Period End": "2021-05-16T00:00:00",
+    "Pay Date": "2021-05-21T00:00:00",
+    "Company ID": "VES400",
+    "Intercompany ID": "VES800",
+    "Project Code": "ATL002EK01",
+    "Project Description": "129 NORTH AVENUE-ATL002EK01",
+    "Business Application Code": "KIT",
+    "Business Application Description": "Kitchens",
+    "Sub Job Family": "32-151",
+    "Sub Job Family Description": "Operate - Operate",
+    "Job Code": "KITSPV",
+    "Job Description": "Kitchen Supervisor",
+    "Financial Level Code": "DIRV",
+    "Financial Level Description": "Direct - Variable Lvl 1",
+    "Employee Code": 800010.0,
+    "Last": "Duncombe",
+    " First": " Tamara",
+    "GL/Pay Account Code": "FSAMD",
+    "Pay Type": "Hourly",
+    "Union Code": "",
+    "Full-Time/Part-Time": "Full-Time",
+    "GL Account Description": "FSA Medical- BP",
+    "GL REEF Description": "FSA and HSA Payable",
+    "GLCode": 202060.0,
+    "Date Worked": "",
+    "Hours": 0.0,
+    "Rate": 0.0,
+    "Amount": -1.54,
+    "Debit/Credit Indicator": "Credit",
+    "GL Code Type": "DE"
+  },
+  {
+    "Pay Period Start": "2021-05-03T00:00:00",
+    "Pay Period End": "2021-05-16T00:00:00",
+    "Pay Date": "2021-05-21T00:00:00",
+    "Company ID": "VES400",
+    "Intercompany ID": "VES800",
+    "Project Code": "ATL042EK01",
+    "Project Description": "1020 SPRING ST NW",
+    "Business Application Code": "KIT",
+    "Business Application Description": "Kitchens",
+    "Sub Job Family": "32-151",
+    "Sub Job Family Description": "Operate - Operate",
+    "Job Code": "KITSPV",
+    "Job Description": "Kitchen Supervisor",
+    "Financial Level Code": "DIRV",
+    "Financial Level Description": "Direct - Variable Lvl 1",
+    "Employee Code": 801907.0,
+    "Last": "Wagner",
+    " First": " Jimmy",
+    "GL/Pay Account Code": "FSAMD",
+    "Pay Type": "Hourly",
+    "Union Code": "",
+    "Full-Time/Part-Time": "Full-Time",
+    "GL Account Description": "FSA Medical- BP",
+    "GL REEF Description": "FSA and HSA Payable",
+    "GLCode": 202060.0,
+    "Date Worked": "",
+    "Hours": 0.0,
+    "Rate": 0.0,
+    "Amount": -100.0,
+    "Debit/Credit Indicator": "Credit",
+    "GL Code Type": "DE"
+  },
+  {
+    "Pay Period Start": "2021-05-03T00:00:00",
+    "Pay Period End": "2021-05-16T00:00:00",
+    "Pay Date": "2021-05-21T00:00:00",
+    "Company ID": "VES400",
+    "Intercompany ID": "VES800",
+    "Project Code": "ATL900PK01",
+    "Project Description": "3795 PRESIDENTIAL PKWY",
+    "Business Application Code": "KIT",
+    "Business Application Description": "Kitchens",
+    "Sub Job Family": "32-151",
+    "Sub Job Family Description": "Operate - Operate",
+    "Job Code": "COOK",
+    "Job Description": "Cook",
+    "Financial Level Code": "INDM",
+    "Financial Level Description": "MSA  - Lvl 3 & 4",
+    "Employee Code": 803028.0,
+    "Last": "Davis",
+    " First": " Michael",
+    "GL/Pay Account Code": "FSAMD",
+    "Pay Type": "Hourly",
+    "Union Code": "",
+    "Full-Time/Part-Time": "Full-Time",
+    "GL Account Description": "FSA Medical- BP",
+    "GL REEF Description": "FSA and HSA Payable",
+    "GLCode": 202060.0,
+    "Date Worked": "",
+    "Hours": 0.0,
+    "Rate": 0.0,
+    "Amount": -200.0,
+    "Debit/Credit Indicator": "Credit",
+    "GL Code Type": "DE"
+  }
+
+]
+
+FLOW:::
+======
+%dw 2.0
+output application/json
+var a = [
+202135,
+601090,
+202060,
+202120,
+202035,
+202130,
+202115,
+202140,
+202080
+]
+---
+
+
+flatten(payload map ((item, index) -> a map ((item1, index1) -> if( item.GLCode == item1) item  else ""  ) )) filter $ != ""
+
+
+
+OUTPUT::::
+=============
+[
+  {
+    "Pay Period Start": "2021-05-03T00:00:00",
+    "Pay Period End": "2021-05-16T00:00:00",
+    "Pay Date": "2021-05-21T00:00:00",
+    "Company ID": "VES400",
+    "Intercompany ID": "VES800",
+    "Project Code": "ATL002EK01",
+    "Project Description": "129 NORTH AVENUE-ATL002EK01",
+    "Business Application Code": "KIT",
+    "Business Application Description": "Kitchens",
+    "Sub Job Family": "32-151",
+    "Sub Job Family Description": "Operate - Operate",
+    "Job Code": "KITSPV",
+    "Job Description": "Kitchen Supervisor",
+    "Financial Level Code": "DIRV",
+    "Financial Level Description": "Direct - Variable Lvl 1",
+    "Employee Code": 800010,
+    "Last": "Duncombe",
+    " First": " Tamara",
+    "GL/Pay Account Code": "FSAMD",
+    "Pay Type": "Hourly",
+    "Union Code": "",
+    "Full-Time/Part-Time": "Full-Time",
+    "GL Account Description": "FSA Medical- BP",
+    "GL REEF Description": "FSA and HSA Payable",
+    "GLCode": 202060,
+    "Date Worked": "",
+    "Hours": 0,
+    "Rate": 0,
+    "Amount": -1.54,
+    "Debit/Credit Indicator": "Credit",
+    "GL Code Type": "DE"
+  },
+  {
+    "Pay Period Start": "2021-05-03T00:00:00",
+    "Pay Period End": "2021-05-16T00:00:00",
+    "Pay Date": "2021-05-21T00:00:00",
+    "Company ID": "VES400",
+    "Intercompany ID": "VES800",
+    "Project Code": "ATL042EK01",
+    "Project Description": "1020 SPRING ST NW",
+    "Business Application Code": "KIT",
+    "Business Application Description": "Kitchens",
+    "Sub Job Family": "32-151",
+    "Sub Job Family Description": "Operate - Operate",
+    "Job Code": "KITSPV",
+    "Job Description": "Kitchen Supervisor",
+    "Financial Level Code": "DIRV",
+    "Financial Level Description": "Direct - Variable Lvl 1",
+    "Employee Code": 801907,
+    "Last": "Wagner",
+    " First": " Jimmy",
+    "GL/Pay Account Code": "FSAMD",
+    "Pay Type": "Hourly",
+    "Union Code": "",
+    "Full-Time/Part-Time": "Full-Time",
+    "GL Account Description": "FSA Medical- BP",
+    "GL REEF Description": "FSA and HSA Payable",
+    "GLCode": 202060,
+    "Date Worked": "",
+    "Hours": 0,
+    "Rate": 0,
+    "Amount": -100,
+    "Debit/Credit Indicator": "Credit",
+    "GL Code Type": "DE"
+  },
+  {
+    "Pay Period Start": "2021-05-03T00:00:00",
+    "Pay Period End": "2021-05-16T00:00:00",
+    "Pay Date": "2021-05-21T00:00:00",
+    "Company ID": "VES400",
+    "Intercompany ID": "VES800",
+    "Project Code": "ATL900PK01",
+    "Project Description": "3795 PRESIDENTIAL PKWY",
+    "Business Application Code": "KIT",
+    "Business Application Description": "Kitchens",
+    "Sub Job Family": "32-151",
+    "Sub Job Family Description": "Operate - Operate",
+    "Job Code": "COOK",
+    "Job Description": "Cook",
+    "Financial Level Code": "INDM",
+    "Financial Level Description": "MSA  - Lvl 3 & 4",
+    "Employee Code": 803028,
+    "Last": "Davis",
+    " First": " Michael",
+    "GL/Pay Account Code": "FSAMD",
+    "Pay Type": "Hourly",
+    "Union Code": "",
+    "Full-Time/Part-Time": "Full-Time",
+    "GL Account Description": "FSA Medical- BP",
+    "GL REEF Description": "FSA and HSA Payable",
+    "GLCode": 202060,
+    "Date Worked": "",
+    "Hours": 0,
+    "Rate": 0,
+    "Amount": -200,
+    "Debit/Credit Indicator": "Credit",
+    "GL Code Type": "DE"
+  }
+]
+========================================================================================================================================================================================================================================
+8)INPUT:: ---->Array to Array Comapre(Not(!) and Contains functions) ::
+====================================================================
+https://help.mulesoft.com/s/question/0D52T00005JWU4hSAH/syntax-for-not-contains ----------> this is google link
+================================================================================
+INPUT::
+=======
+[
+  {
+    "locationId": "12345",
+    "territoryId": "Hello"
+  },
+  {
+    "locationId": "679654",
+    "territoryId": "World"
+  }
+]
+Flow::
+========
+%dw 2.0
+output application/json
+var payload2 = [
+         "6789",
+         "12345"
+         ]
+---
+// payload filter (!((payload2.combinedId contains ($.locationId)) or (payload2.combinedId contains ($.territoryId))))
+
+
+payload filter (!(( payload2 contains ($.locationId))))      //-----------> this is not contains function
+
+payload filter ((( payload2 contains ($.locationId))))      //------------> this is contain function
+
+payload filter (!(( payload2 contains ($.locationId)))) filter ((item, index) -> item.territoryId == "World") //------------------------------------------------------------------->this is two conditions compare array to array
+
+
+OUTPUT::
+=========
+[
+  {
+    "locationId": "679654",
+    "territoryId": "World"
+  }
+]
+
+====================================================================================================================
+====================================================================================================================
+9))INPUT::
+-------
+
+{
+    "compositeResponse": [
+        {
+            "body": {
+                "id": "0012w00001Fqr6aAAB",
+                "success": true,
+                "errors": []
+            },
+            "httpHeaders": {
+                "Location": "/services/data/v56.0/sobjects/Account/0012w00001Fqr6aAAB"
+            },
+            "httpStatusCode": 201,
+            "referenceId": "refAccount"
+        },
+        {
+            "body": {
+                "id": "0032w00000wCRKtAAO",
+                "success": true,
+                "errors": []
+            },
+            "httpHeaders": {
+                "Location": "/services/data/v56.0/sobjects/Contact/0032w00000wCRKtAAO"
+            },
+            "httpStatusCode": 201,
+            "referenceId": "refContact"
+        }
+    ]
+}
+
+FLOW:::(Remove Headers and HttpStatusCode)
+-------
+%dw 2.0
+output application/json
+---
+
+"compositeResponse":(payload.compositeResponse map ((item, index) ->{
+
+ (item filterObject ((value, key, index) -> key as String != "httpHeaders" and  key as String != "httpStatusCode" ) )
+
+ } ))
+====================================================================================================================
+====================================================================================================================
+10) REMOVE DECIMAL(23.0)=23
+--------------------------
+INPUT:::
+{
+    "message": "23.0"
+}
+FLOW::
+------
+%dw 2.0
+output application/json
+---
+round(payload.message) as String
+OUTPUT::
+-------
+"23"
+========================================================================================================================================================================================================================================
+11)INPUT:
+---------
+"sivanjaneyulu kalluru"   ----------> with space
+FLOW:
+-----
+%dw 2.0
+import * from dw::core::Strings
+output application/json
+---
+payload as String splitBy  " " reduce ($ ++ " " ++ $$)
+OUTPUT::
+--------
+"kalluru sivanjaneyulu"
+
+                            (and)
+INPUT::
+-------
+"sivanjaneyulukalluru"    ---------> without space
+flow::
+=====
+%dw 2.0
+import * from dw::core::Strings
+output application/json
+---
+
+  substringAfter( payload,"sivanjaneyulu") ++ " " ++ substringBefore( payload,"kalluru") 
+OUTPUT:
+---------
+"kalluru sivanjaneyulu"
+
+========================================================================================================================================================================================================================================

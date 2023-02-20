@@ -1,0 +1,36 @@
+#%RAML 1.0
+title: LearnApi
+/sample:
+  get:
+    queryParameters:
+      productname:
+        type: string
+        required: true
+        minLength: 4
+        maxLength: 15
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include  /firstexample.raml
+              
+  post:
+    queryParameters:
+      id:
+    body:    
+      application/json:
+        properties:
+          productname:
+            required: true
+            minLength: 7
+            maxLength: 15
+          brand:
+            required: true
+            minLength: 5
+            maxLength: 10
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              {"user":"logged"}     

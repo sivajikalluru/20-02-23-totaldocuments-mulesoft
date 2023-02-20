@@ -1,0 +1,48 @@
+=====================================================
+1) SAP SERVER --- VPN Access --- 
+   Service request --- Bupathi konda---
+   SOPHOS VPN Access 
+
+2) SAP SERVER -- Balakoti --- Service request 
+   SAP EC5 SERVER 
+
+=====================================================
+
+1) 
+
+Presentation layer---Application layer---Database layer.
+Vishal--------------Sales,Vendor,Banking---Tables ====
+
+SAP -- Systems,Applications and Products in Data Processing
+R / 3 --- Presentation layer,Application layer and Database layer.
+
+SAP --- 1) functional 2) Technical 
+
+functional --- business process of the organization
+Accounts --- FI / CO ( finance & controlling )
+Sales    --- SD ( Sales & distribution )
+SAP  MM  --- Materials management
+
+Technical ---- 
+1) Customization --- ABAP -- ABAP / 4 
+2) Networking---Administration of servers --- BASIS
+
+ABAP -- Advanced Business Application Programming 
+ABAP / 4 -- 4th generation language.
+
+1) case - sensitive ---- Printf--printf
+2) multiple languages
+3) SQL 
+4) Data sharing
+What are the features of ABAP / 4 Programming language?
+1) ABAP is not case - sensitive
+2) ABAP supports multiple OS,Multipe DB.
+3) It is an event driven language
+4) It supports SQL(Structured Query language---Open SQL and Native SQL)
+5) It supports Unicode characteristics ---
+
+
+
+
+
+
